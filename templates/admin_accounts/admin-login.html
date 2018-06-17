@@ -1,0 +1,19 @@
+<h2>Admin Login</h2>
+
+<div class="error-box" style="color:red;">
+  {{error}}
+</div>
+
+<form class="login-form" method="post">
+  {% csrf_token %}
+  <p>
+    <label for="email">Email: </label>
+    <input type="email" name="email" value="{{email_val}}">
+  </p>
+  <p>
+    <label for="password">Password: </label>
+    <input type="password" name="password" value="">
+  </p>
+
+  <input type="submit" name="" value="Submit">
+</form>

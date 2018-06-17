@@ -1,0 +1,53 @@
+/* general view */
+
+/* Base  */
+nav {
+  padding-bottom: 10rem;
+}
+
+.container {
+  width: 100%;
+  padding: 0;
+}
+
+.brand-holder {
+  position: absolute;
+  margin: auto;
+  left: 50% !important;
+  top: 0% !important;
+}
+
+.navbar-brand {
+  font-family:'Berkshire Swash', Helvetica, sans-serif;
+  font-size: 2em;
+}
+
+ /* Index Page */
+.card{
+  width: 20rem;
+  padding: 1rem;
+  border-width: 0px 0px 2px 0px;
+}
+
+.card-link{
+  color: black;
+}
+
+/* Post Detail Page */
+.main-content {
+width: 75%;
+/* background-color: blue; */
+}
+
+.main-content .title{
+  text-align: center;
+}
+
+.main-content .img-fluid {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.side-content {
+  width: 25%;
+}

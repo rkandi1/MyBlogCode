@@ -1,0 +1,43 @@
+{% extends "general_view/base.html" %}
+{%load static%}
+
+{% block title %}
+  Featured Posts
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="d-flex flex-column bd-highlight mb-3">
+    <div class="d-md-flex flex-row bd-highlight mb-3">
+      {% for post in posts_one %}
+        <div class="card">
+          <a class="card-link" href="{{post.id}}">
+            <div class="card-body">
+              <h5 class="card-title">{{post.title}}</h5>
+            </div>
+            <img class="card-img-top" src="{% static "images/my_image.jpg"%}" alt="My image">
+            <div class="card-body">
+              <p class="card-text">{{post.content|slice:":150"}}...</p>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="d-md-flex flex-row bd-highlight mb-3">
+      {% for post in posts_two %}
+      <div class="card">
+        <a class="card-link" href="{{post.id}}">
+          <div class="card-body">
+            <h5 class="card-title">{{post.title}}</h5>
+          </div>
+          <img class="card-img-top" src="{% static "images/my_image.jpg"%}" alt="My image">
+          <div class="card-body">
+            <p class="card-text">{{post.content|slice:":50"}}</p>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

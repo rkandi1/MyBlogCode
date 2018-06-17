@@ -1,0 +1,11 @@
+{% extends "admin_accounts/base.html" %}
+
+{% block content %}
+<form class="post-form" method="post">
+  {% csrf_token %}
+  <input type="text" name="post-title" value="{{title}}" style="width:42rem">
+  <p class="creation-time">{{created}}</p>
+  <textarea name="post-content" rows="8" cols="80">{{body}}</textarea>
+  <p><input type="submit" value="Submit"></p>
+</form>
+{% endblock %}

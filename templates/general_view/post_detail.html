@@ -1,0 +1,27 @@
+{% extends "general_view/base.html" %}
+{% load static %}
+
+{%block title%}
+  {{title}}
+{%endblock%}
+
+{%block content%}
+<div class="container">
+  <div class="d-flex flex-row bd-highlight mb-3">
+    <div class="main-content p-2 bd-highlight">
+      <h2 class="title">{{title}}</h2>
+      <p style="text-align: center; color:gray;">{{created}}</p>
+      <img src="{% static "images/my_image.jpg" %}" class="img-fluid" alt="Responsive my image">
+      <p style="white-space: pre-wrap">{{content}}</p>
+    </div>
+    <div class="side-content p-2 bd-highlight">
+      <div class="card" style="width: 14rem;">
+        <div class="card-body">
+          <h5 class="card-title">About</h5>
+          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}
