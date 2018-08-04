@@ -36,7 +36,6 @@ nav {
 /* Post Detail Page */
 .main-content {
 width: 75%;
-/* background-color: blue; */
 }
 
 .main-content .title{
@@ -50,4 +49,16 @@ width: 75%;
 
 .side-content {
   width: 25%;
+}
+
+
+/* Admin Accounts */
+
+/* Mainpage */
+.post_list li {
+  list-style-type: none;
+}
+
+.post_list li input {
+  margin-right: 1rem;
 }

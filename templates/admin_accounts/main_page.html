@@ -8,12 +8,17 @@
       {{posts}}
     </div>
   {% else %}
-    <ul>
+  <form method="post">
+    {% csrf_token %}
+    <ul class="post_list">
         {% for post in posts %}
           <li>
-            <a href="{{post.id}}">{{post.title}}</a> 
+            <input type="checkbox" name="itemtbd" value="{{post.id}}"/>
+            <label for="{{post.id}}"><a href="{{post.id}}">{{post.title}}</a></label>
           </li>
         {% endfor %}
     </ul>
+    <input type="submit" value="Delete">
+  </form>
   {% endif %}
 {% endblock %}

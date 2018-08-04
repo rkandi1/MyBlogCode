@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView, ListView, DetailView
 from .models import UserAccount, BlogPosts
+from django.db.models import ObjectDoesNotExist
 
 from hashlib import md5
 
@@ -27,21 +28,26 @@ class LoginPage(TemplateView):
         error_statement = "Please fill both the user and the password fields."
 
         if email_field and email_field != "" and password_field and password_field!="":
+            curr_user = None
             try:
                 curr_user = UserAccount.objects.get(email=email_field)
-                if curr_user is not None:
-                    request.session["email"] = email_field
-                    # todo: Change url in production
-                    response = HttpResponseRedirect("http://127.0.0.1:8000/admins/mainpage/")
-                    cookie_val = "|".join([str(curr_user.id),
-                                           md5((SECRET_KEY+str(curr_user.id)).encode("utf8")).hexdigest()])
-                    response.set_cookie("userid", cookie_val, max_age=1000)
-                    return response
-                else:
-                    login_error = "The credentials do not exist!"
-                    return render(request, self.template_name, context={"error": login_error})
-            except ValueError:
+            except ObjectDoesNotExist:
                 error_statement = "There was a problem recording your credentials. Please try again."
+
+            if (curr_user is not None) and (curr_user.password == password_field):
+                request.session["email"] = email_field
+                # todo: Change url in production
+                response = HttpResponseRedirect("http://127.0.0.1:8000/admins/mainpage/")
+
+                cookie_val = "|".join([str(curr_user.id),
+                                       md5((SECRET_KEY+str(curr_user.id)).encode("utf8")).hexdigest()])
+
+                response.set_cookie("userid", cookie_val, max_age=1000)
+                return response
+            else:
+                login_error = "The credentials do not exist!"
+                return render(request, self.template_name, context={"error": login_error})
+
 
         return render(request, self.template_name, context={"error": error_statement,
                                                             "email_val": email_field})
@@ -73,6 +79,17 @@ class AdminMainPage(ListView):
             posts = "There are no posts yet!!"
         request.session["email"] = None
         return render(request, self.template_name, context={"posts":posts})
+
+    def post(self, request, *args, **kwargs):
+        print(request.POST["itemtbd"])
+        if "itemtbd" in request.POST:
+            post = BlogPosts.objects.filter(id=request.POST["itemtbd"])
+            print(post)
+            for item in post:
+                print(item)
+                item.delete()
+
+        return HttpResponseRedirect("/admins/mainpage/")
 
 
 class PostDetail(DetailView):
